@@ -22,20 +22,6 @@ class Button():
         if mouse.get_pressed()[0] == 0:
             self.clicked = False
 
-
-        if self.rect.collidepoint(pos):
-            if mouse.get_pressed()[1] == 1 and self.clicked == False:
-                self.clicked = True
-                action = True
-
-        if mouse.get_pressed()[1] == 0:
-            self.clicked = False
-
         window.blit(self.image,(self.rect.x,self.rect.y))
-
-
-
-
-
 
         return action
