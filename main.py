@@ -1,33 +1,57 @@
 
 from pygame import *
 from button import Button
+from sprite import Player, GameSprite
 
 
 window = display.set_mode((700,500))
 
+background_image = image.load("arena.png")
+background = transform.scale(background_image, (700,500))
+
+
+
 game = True
 clock = time.Clock()
-
-
-btn1 = Button('start.png',100,100,100,50)
-btn2 = Button('exit.png',200,200,200,50)
-
 run = False
+
+btn1 = Button('start.png',275,100,150,50)
+btn2 = Button('exit.png',275,200,150,50)
+
+player = Player('Survivor.png',25,200,75,75,3)
+
+
+
 
 while game:
     for e in event.get():
         if e.type == QUIT:
             game = False
         if e.type == KEYDOWN:
-            if event.key() == K_ESCAPE:
+            if e.key == K_ESCAPE:
                 run = False
 
-    window.fill((255,255,255))
+    
 
-    if btn1.draw(window):
-        print("Press")
-    if btn2.draw(window):
-        game = False
+
+
+    if run:
+        window.blit(background, (0,0))
+        player.draw(window)
+        player.move()
+
+        
+    else:
+        window.fill((0,0,0))
+        if btn1.draw(window):
+            run = True
+            print("Press")
+        if btn2.draw(window):
+            game = False        
+    
+
+
+
 
     display.update()
     clock.tick(60)
