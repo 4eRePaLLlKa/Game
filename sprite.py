@@ -29,13 +29,14 @@ class Enemy(GameSprite):
     def move(self):
         pass
 
-class Wall(GameSprite):
-    def __init__(self,width,height,x,y,color,transperancy=255):
-        self.wall = Surface((50,50))
+class Wall():
+    def __init__(self, width,height, x,y, color=(255,255,255), transperancy=255):
+        self.wall = Surface((width,height))
         self.wall.set_alpha(transperancy)
-        self.wall.fill(0,0,0)
+        self.wall.fill(color)
         self.rect = self.wall.get_rect()
         self.rect.x = x
         self.rect.y = y
 
-    def
+    def draw(self, window):
+        window.blit(self.wall, (self.rect.x, self.rect.y))

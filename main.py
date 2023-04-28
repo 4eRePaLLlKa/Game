@@ -1,7 +1,7 @@
 
 from pygame import *
 from button import Button
-from sprite import Player, GameSprite
+from sprite import Player, GameSprite, Wall
 
 
 window = display.set_mode((700,500))
@@ -20,8 +20,10 @@ btn2 = Button('exit.png',275,200,150,50)
 
 player = Player('Survivor.png',25,200,75,75,3)
 
-
-
+wall1 = Wall(200,35, 110,75, transperancy=0)
+wall2 = Wall(200,35, 110,175, transperancy=0)
+wall3 = Wall(200,35, 110,275, transperancy=0)
+wall4 = Wall(200,35, 110,375, transperancy=0)
 
 while game:
     for e in event.get():
@@ -33,13 +35,16 @@ while game:
 
     
 
-
-
     if run:
         window.blit(background, (0,0))
         player.draw(window)
         player.move()
 
+
+        wall1.draw(window)
+        wall2.draw(window)
+        wall3.draw(window)
+        wall4.draw(window)
         
     else:
         window.fill((0,0,0))
@@ -49,9 +54,6 @@ while game:
         if btn2.draw(window):
             game = False        
     
-
-
-
 
     display.update()
     clock.tick(60)
