@@ -22,8 +22,16 @@ class Player(GameSprite):
             self.rect.y += 5
 
     def fire(self):
-        pass
+        bullet = Bullet('bullet.png',self.rect.centerx, self.rect.top, 15,20,3)
+        bullets.add(bullet)
 
+class Bullet(GameSprite):
+    def update(self):
+        self.rect.x -= self.speed
+        global score
+
+        if self.rect.x < 0:
+            self.kill
 
 class Enemy(GameSprite):
     def move(self):
