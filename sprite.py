@@ -16,22 +16,27 @@ class GameSprite(sprite.Sprite):
 class Player(GameSprite):
     def move(self):
         keys = key.get_pressed()
-        if keys[K_UP]:
-            self.rect.y -= 5
-        elif keys[K_DOWN]:
-            self.rect.y += 5
+        if keys[K_UP] == True and self.rect.y != 20:
+            self.rect.y = self.rect.y - self.speed 
+        elif keys[K_DOWN] == True and self.rect.y != 410:
+            self.rect.y = self.rect.y + self.speed 
 
-    def fire(self):
-        bullet = Bullet('bullet.png',self.rect.centerx, self.rect.top, 15,20,3)
-        bullets.add(bullet)
+    def fire(self,Bullet):
+        bullet = Bullet(self.rect.centerx, self.rect.centery)
+        return bullets
 
-class Bullet(GameSprite):
-    def update(self):
-        self.rect.x -= self.speed
-        global score
 
-        if self.rect.x < 0:
-            self.kill
+class Bullet(sprite.Sprite):
+    def __init__(self,x,y):
+        self.bull = Surface(20,20)
+        self.rect = self.bull.get_rect()
+        self.rect.x = x
+        self.rect.y = y
+        self.speed = 5 
+
+
+    def update(self,window):
+        window.blit(self.bull,(self.rect.x,self.rect.y))
 
 class Enemy(GameSprite):
     def move(self):

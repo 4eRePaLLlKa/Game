@@ -1,7 +1,7 @@
 
 from pygame import *
 from button import Button
-from sprite import Player, GameSprite, Wall
+from sprite import Player, GameSprite, Wall, Bullet
 
 
 window = display.set_mode((700,500))
@@ -18,12 +18,18 @@ run = False
 btn1 = Button('start.png',275,100,150,50)
 btn2 = Button('exit.png',275,200,150,50)
 
-player = Player('Survivor.png',25,200,75,75,3)
+player = Player('Survivor.png',25,350,75,75,3)
 
 wall1 = Wall(200,35, 110,75, transperancy=0)
 wall2 = Wall(200,35, 110,175, transperancy=0)
 wall3 = Wall(200,35, 110,275, transperancy=0)
 wall4 = Wall(200,35, 110,375, transperancy=0)
+
+
+
+bullets = sprite.Group()
+bullets = []
+
 
 while game:
     for e in event.get():
@@ -32,6 +38,8 @@ while game:
         if e.type == KEYDOWN:
             if e.key == K_ESCAPE:
                 run = False
+            if e.key == K_SPACE:
+                bullets.append(player.fire())
 
     
 
@@ -46,6 +54,10 @@ while game:
         wall3.draw(window)
         wall4.draw(window)
         
+
+        for b in bullets :
+            b.update(window)
+
     else:
         window.fill((0,0,0))
         if btn1.draw(window):
