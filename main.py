@@ -82,9 +82,9 @@ while game:
         window.blit(img, (20,450))
 
 
-
-
-
+    if score >= max_score:
+        finish = True
+        window.blit(win, (200,200))
 
 
         wall1.draw(window)
