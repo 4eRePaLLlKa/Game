@@ -29,7 +29,14 @@ wall3 = Wall(200,35, 110,275, transperancy=0)
 wall4 = Wall(200,35, 110,375, transperancy=0)
 
 
+
 score = 0 
+max_score = 30
+finish = False
+
+
+lose = font1.render("You Lose", True, (255,0,0))
+win = font1.render("You Win", True, (255,255,255))
 
 wall = sprite.Group()
 wall.add(wall1)
