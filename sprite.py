@@ -3,6 +3,7 @@ from random import randint
 
 class GameSprite(sprite.Sprite):
     def __init__(self,image_name,x,y,width,height,speed):
+        sprite.Sprite.__init__(self)
         self.image = transform.scale(image.load(image_name),(width,height))
         self.rect = self.image.get_rect()
         self.rect.x = x
@@ -33,6 +34,7 @@ class Player(GameSprite):
 
 class Bullet(sprite.Sprite):
     def __init__(self, x,y):
+        sprite.Sprite.__init__(self)
         self.image = transform.scale(image.load("bullet.png"),(15,10))
         self.bull = Surface((20,20))
         self.bull.fill((255,0,0))
@@ -60,8 +62,9 @@ class Enemy(GameSprite):
 
 
 
-class Wall():
+class Wall(sprite.Sprite):
     def __init__(self, width,height, x,y, color=(255,255,255), transperancy=255):
+        sprite.Sprite.__init__(self)
         self.wall = Surface((width,height))
         self.wall.set_alpha(transperancy)
         self.wall.fill(color)

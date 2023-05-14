@@ -29,18 +29,29 @@ wall3 = Wall(200,35, 110,275, transperancy=0)
 wall4 = Wall(200,35, 110,375, transperancy=0)
 
 
+score = 0 
 
+
+
+wall = sprite.Group()
+wall.add(wall1)
+wall.add(wall2)
+wall.add(wall3)
+wall.add(wall4)
+
+
+enemys = sprite.Group()
 bullets = sprite.Group()
-bullets = []
-enemys = []
 
-for i in range(2):
-    enemy1 = Enemy("zombie1.png",randint(640,650),20,30,45,randint(1,2))
-    enemy2 = Enemy("zombie2.png",randint(640,650),320,30,45,randint(1,2))
-    enemy3 = Enemy("zombie3.png",randint(640,650),420,30,45,randint(1,2))
-    enemys.append(enemy1)
-    enemys.append(enemy2)
-    enemys.append(enemy3)
+points = [15,120,220,320,420]
+img_enemy = ["zombie1.png","zombie2.png","zombie3.png"]
+
+
+for i in range(6):
+    enemy1 = Enemy(img_enemy[randint(0,2)],randint(640,650),points[randint(0,4)],30,45,randint(1,2))
+
+    enemys.add(enemy1)
+
 
 
 while game:
@@ -51,7 +62,7 @@ while game:
             if e.key == K_ESCAPE:
                 run = False
             if e.key == K_SPACE:
-                bullets.append(player.fire())
+                bullets.add(player.fire())
 
     
 
@@ -73,7 +84,15 @@ while game:
         for e in enemys:
             e.update(window)
 
+        
+        collides = sprite.groupcollide(enemys, bullets,True,True)
+        for c in collides:
+            score = score + 1
+            enemy1 = Enemy(img_enemy[randint(0,2)],randint(640,650),points[randint(0,4)],30,45,randint(1,2))
+            enemys.add(enemy1)
 
+        collides = sprite.groupcollide(wall, bullets,False,True)
+     
 
     else:
         window.fill((0,0,0))
