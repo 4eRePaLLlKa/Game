@@ -32,7 +32,6 @@ wall4 = Wall(200,35, 110,375, transperancy=0)
 
 score = 0 
 max_score = 30
-finish = False
 
 
 lose = font1.render("You Lose", True, (255,0,0))
@@ -44,7 +43,7 @@ wall.add(wall2)
 wall.add(wall3)
 wall.add(wall4)
 
-
+finish = False
 enemys = sprite.Group()
 bullets = sprite.Group()
 
@@ -82,9 +81,7 @@ while game:
         window.blit(img, (20,450))
 
 
-    if score >= max_score:
-        finish = True
-        window.blit(win, (200,200))
+
 
 
         wall1.draw(window)
