@@ -31,8 +31,6 @@ wall4 = Wall(200,35, 110,375, transperancy=0)
 
 score = 0 
 
-
-
 wall = sprite.Group()
 wall.add(wall1)
 wall.add(wall2)
@@ -71,7 +69,17 @@ while game:
         player.draw(window)
         player.move()
 
+
+
+        img = font1.render("Score: "+str(score), True,(255,255,255))
         window.blit(img, (20,450))
+
+
+
+
+
+
+
         wall1.draw(window)
         wall2.draw(window)
         wall3.draw(window)
