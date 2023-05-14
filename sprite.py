@@ -15,7 +15,10 @@ class GameSprite(sprite.Sprite):
 
 
 class Player(GameSprite):
-    self.img_1 = transform.scale(image.load("bullet.png"), (10,15))
+    def __init__(self, img_1, width, height, x, y,speed):
+        super().__init__(img_1, width, height, x, y, speed)
+        
+
     def move(self):
         keys = key.get_pressed()
         if keys[K_UP] == True and self.rect.y != 20:
@@ -23,14 +26,14 @@ class Player(GameSprite):
         elif keys[K_DOWN] == True and self.rect.y != 410:
             self.rect.y = self.rect.y + self.speed 
 
-def fire(self):
-        if self.image == self.img_1:
-            bullet = Bullet(self.rect.centerx, self.rect.centery)
+    def fire(self):
+        bullet = Bullet(self.rect.centerx, self.rect.centery)
         return bullet
 
 
 class Bullet(sprite.Sprite):
     def __init__(self, x,y):
+        self.image = transform.scale(image.load("bullet.png"),(15,10))
         self.bull = Surface((20,20))
         self.bull.fill((255,0,0))
         self.rect = self.bull.get_rect()
@@ -38,8 +41,10 @@ class Bullet(sprite.Sprite):
         self.rect.y = y
         self.speed = 5
 
+
     def update(self, window):
-        window.blit(self.bull, (self.rect.x, self.rect.y))
+        self.rect.x += self.speed
+        window.blit(self.image, (self.rect.x, self.rect.y))
 
 class Enemy(GameSprite):
     def update(self,window):

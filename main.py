@@ -21,7 +21,7 @@ run = False
 btn1 = Button('start.png',275,100,150,50)
 btn2 = Button('exit.png',275,200,150,50)
 
-player = Player('Survivor.png',25,350,75,75,3)
+player = Player('Survivor.png',25,350,75,75,5)
 
 wall1 = Wall(200,35, 110,75, transperancy=0)
 wall2 = Wall(200,35, 110,175, transperancy=0)
