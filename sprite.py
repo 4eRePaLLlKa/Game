@@ -9,7 +9,6 @@ class GameSprite(sprite.Sprite):
         self.rect.x = x
         self.rect.y = y
         self.speed = speed
-        
 
     def draw(self, window):
         window.blit(self.image, (self.rect.x, self.rect.y))
@@ -19,7 +18,6 @@ class Player(GameSprite):
     def __init__(self, img_1, width, height, x, y,speed):
         super().__init__(img_1, width, height, x, y, speed)
         
-
     def move(self):
         keys = key.get_pressed()
         if keys[K_UP] == True and self.rect.y != 20:
@@ -43,7 +41,6 @@ class Bullet(sprite.Sprite):
         self.rect.y = y
         self.speed = 5
 
-
     def update(self, window):
         self.rect.x += self.speed
         window.blit(self.image, (self.rect.x, self.rect.y))
@@ -53,13 +50,13 @@ class Enemy(GameSprite):
         self.rect.x = self.rect.x - self.speed
         points = [15,120,220,320,420]
         global lost
+
         if self.rect.x < 150:
+            
             self.rect.x = randint(640,650)        
             self.rect.y = points[randint(0,4)]
             self.speed = randint(1,2)
         window.blit(self.image,(self.rect.x,self.rect.y))
-
-
 
 
 class Wall(sprite.Sprite):

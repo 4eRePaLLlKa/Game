@@ -18,8 +18,7 @@ img = font1.render("Score: ",True,(255,255,255))
 mixer.init()
 mixer.music.load("zombie_sound.mp3")
 mixer.music.play()
-
-mixer.Sound("ak47.mp3")
+ak = mixer.Sound("ak47_sound.ogg")
 
 
 game = True
@@ -39,6 +38,7 @@ wall4 = Wall(200,35, 110,375, transperancy=0)
 
 
 score = 0 
+
 max_score = 30
 
 
@@ -74,6 +74,7 @@ while game:
             if e.key == K_ESCAPE:
                 run = False
             if e.key == K_SPACE:
+                ak.play()
                 bullets.add(player.fire())
 
     
@@ -84,10 +85,8 @@ while game:
         player.move()
 
 
-
         img = font1.render("Score: "+str(score), True,(255,255,255))
         window.blit(img, (20,450))
-
 
 
 
@@ -104,7 +103,6 @@ while game:
         for e in enemys:
             e.update(window)
 
-        
         collides = sprite.groupcollide(enemys, bullets,True,True)
         for c in collides:
             score = score + 1
@@ -120,7 +118,7 @@ while game:
         
         if btn1.draw(window):
             run = True
-            print("Press")
+            
         if btn2.draw(window):
             game = False        
     
