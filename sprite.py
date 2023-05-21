@@ -53,7 +53,7 @@ class Enemy(GameSprite):
         self.rect.x = self.rect.x - self.speed
         points = [15,120,220,320,420]
         global lost
-        if self.rect.x < 200:
+        if self.rect.x < 150:
             self.rect.x = randint(640,650)        
             self.rect.y = points[randint(0,4)]
             self.speed = randint(1,2)

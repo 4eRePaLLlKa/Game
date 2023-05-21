@@ -14,6 +14,14 @@ font.init()
 font1 = font.SysFont("Arial", 20)
 img = font1.render("Score: ",True,(255,255,255))
 
+#music
+mixer.init()
+mixer.music.load("zombie_sound.mp3")
+mixer.music.play()
+
+mixer.Sound("ak47.mp3")
+
+
 game = True
 clock = time.Clock()
 run = False
@@ -102,6 +110,7 @@ while game:
             score = score + 1
             enemy1 = Enemy(img_enemy[randint(0,2)],randint(640,650),points[randint(0,4)],30,45,randint(1,2))
             enemys.add(enemy1)
+
 
         collides = sprite.groupcollide(wall, bullets,False,True)
      
